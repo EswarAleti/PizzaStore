@@ -26,7 +26,6 @@ class PizzaInventory {
     }
 
     verifyInventory(pizza, callback) {
-        console.log(this.pizzas);
         const pizzaObject = this.pizzas.find((obj) => obj.ID === pizza.ID);
         if (!pizzaObject) {
             callback(
@@ -36,7 +35,10 @@ class PizzaInventory {
             return;
         }
         if (pizzaObject.Count <= 0) {
-            callback(new Error(`Out of stock ID \'${pizza.ID}\'`), null);
+            callback(
+                new Error(`Pizza with ID ${pizza.ID} is now out of stock!`),
+                null
+            );
             return;
         }
         callback(null, true);
